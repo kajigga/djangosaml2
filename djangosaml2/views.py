@@ -641,7 +641,7 @@ class MetadataView(SPConfigMixin, View):
     def get(self, request, *args, **kwargs):
         conf = self.get_sp_config(request)
         if not conf:
-            return HttpResponse(content='<msg>invalid entity id</msg>'.encode('utf-8'), content_type="text/xml; charset=utf-8", status_code=404)
+            return HttpResponse(content='<msg>unknown service id</msg>'.encode('utf-8'), content_type="text/xml; charset=utf-8", status=404)
         metadata = entity_descriptor(conf)
         return HttpResponse(content=str(metadata).encode('utf-8'), content_type="text/xml; charset=utf-8")
 
