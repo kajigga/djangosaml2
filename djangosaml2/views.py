@@ -29,6 +29,8 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import View
 from django.utils.module_loading import import_string
+from django.urls import reverse
+from django.utils.http import urlquote
 from saml2 import BINDING_HTTP_POST, BINDING_HTTP_REDIRECT
 from saml2.client_base import LogoutError
 from saml2.config import SPConfig
@@ -166,7 +168,7 @@ class LoginView(SPConfigMixin, View):
                               "Discovery Service: {}").format(discovery_service))
                 login_url = request.build_absolute_uri(reverse('saml2_login'))
                 login_url = '{0}?next={1}'.format(login_url,
-                                                  urlquote(came_from, safe=''))
+                                                  urlquote(next_path, safe=''))
                 ds_url = '{0}?entityID={1}&return={2}&returnIDParam=idp'
                 ds_url = ds_url.format(discovery_service,
                                        urlquote(
