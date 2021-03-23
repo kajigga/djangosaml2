@@ -22,6 +22,8 @@ from django.core.exceptions import ImproperlyConfigured
 from django.utils.http import is_safe_url
 from saml2.config import SPConfig
 from saml2.s_utils import UnknownSystemEntity
+import logging
+logger = logging.getLogger(__name__)
 
 
 def get_custom_setting(name: str, default=None):
@@ -35,6 +37,7 @@ def available_idps(config: SPConfig, langpref=None) -> dict:
     idps = set()
 
     for metadata_name, metadata in config.metadata.metadata.items():
+        logger.debug('====== %s metadata: %s', metadata_name, metadata)
         result = metadata.any('idpsso_descriptor', 'single_sign_on_service')
         if result:
             idps.update(result.keys())
