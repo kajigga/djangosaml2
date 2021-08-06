@@ -24,4 +24,5 @@ urlpatterns = [
     path('ls/', views.LogoutView.as_view(), name='saml2_ls'),
     path('ls/post/', views.LogoutView.as_view(), name='saml2_ls_post'),
     path('metadata/', views.MetadataView.as_view(), name='saml2_metadata'),
+    path('test/', views.EchoAttributesView.as_view(), name='saml2_test'),
 ]
