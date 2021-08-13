@@ -305,8 +305,8 @@ class AssertionConsumerServiceView(SPConfigMixin, View):
     """
 
     def custom_validation(self, response):
-        print(s'sec_context..... {response.sec_context}')
-        # pass
+        # print(s'sec_context..... {response.sec_context}')
+        pass
 
     def handle_acs_failure(self, request, exception=None, status=403, **kwargs):
         """ Error handler if the login attempt fails. Override this to customize the error response.
